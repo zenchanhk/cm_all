@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.0-alpha1" last-position="0,0" last-zoom="1"
+	 default-schema="public" default-owner="postgres">
+<role name="cmall"
+      inherit="true"
+      login="true"
+      encrypted="true"
+      password="********">
+</role>
+
+<role name="doctor"
+      superuser="true"
+      createdb="true"
+      createrole="true"
+      inherit="true"
+      login="true"
+      encrypted="true"
+      password="********">
+</role>
+
+<database name="cm_all" encoding="UTF8" lc-collate="en_US.UTF-8" lc-ctype="en_US.UTF-8">
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+</database>
+
+<schema name="public" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<sequence name="app_user_user_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="app_user">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="60" y="80"/>
+	<column name="user_id" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="password" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="display_name">
+		<type name="text" length="0"/>
+	</column>
+	<column name="gender" not-null="true">
+		<type name="char" length="1"/>
+	</column>
+	<column name="role" not-null="true" default-value="1">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="membership" not-null="true" default-value="1">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="phone">
+		<type name="text" length="0"/>
+	</column>
+	<column name="email" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="clinic">
+		<type name="smallint" length="0" dimension="1"/>
+	</column>
+	<column name="avatar">
+		<type name="text" length="0"/>
+	</column>
+	<column name="cnt_of_failure" not-null="true" default-value="0">
+		<type name="smallint" length="0"/>
+		<comment><![CDATA[Count of failed login]]></comment>
+	</column>
+	<column name="last_used_dev" not-null="true">
+		<type name="text" length="0"/>
+		<comment><![CDATA[last used device]]></comment>
+	</column>
+	<column name="last_login_ts" not-null="true" default-value="now()">
+		<type name="timestamptz" length="0"/>
+	</column>
+	<column name="last_upd_usr" not-null="true" default-value="''">
+		<type name="text" length="0"/>
+	</column>
+	<column name="last_upd_ts" not-null="true" default-value="now()">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<constraint name="appuser_pk" type="pk-constr" table="public.app_user">
+		<columns names="user_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="patient_img_img_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="patient_img">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="60" y="620"/>
+	<column name="img_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="img_path" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="visit_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="dirty" not-null="true" default-value="false">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="last_upd_ts" not-null="true" default-value="now()">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<column name="last_upd_usr" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="thumbnail" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="patientimg_pk" type="pk-constr" table="public.patient_img">
+		<columns names="img_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<function name="img_path"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="1"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="sql" sql-disabled="true"/>
+	<return-type>
+	<type name="text" length="1"/>
+	</return-type>
+	<definition><![CDATA[
+SELECT text '/home/doctor/img/';
+]]></definition>
+</function>
+
+<sequence name="visit_visit_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="visit">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="60" y="360"/>
+	<column name="visit_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="case_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="patient_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="doctor_id" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="symptoms">
+		<type name="text" length="0"/>
+	</column>
+	<column name="pulse" not-null="true">
+		<type name="jsonb" length="0"/>
+	</column>
+	<column name="diagnosis">
+		<type name="text" length="0"/>
+	</column>
+	<column name="prescription">
+		<type name="text" length="0"/>
+	</column>
+	<column name="acupuncture">
+		<type name="text" length="0"/>
+	</column>
+	<column name="create_ts" not-null="true">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<column name="clinic_id" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="created_by" not-null="true" default-value="''">
+		<type name="text" length="0"/>
+	</column>
+	<column name="visibility" not-null="true">
+		<type name="smallint" length="0" dimension="1"/>
+	</column>
+	<column name="ts" not-null="true" default-value="0">
+		<type name="smallint" length="0"/>
+		<comment><![CDATA[increase when being updated]]></comment>
+	</column>
+	<column name="dirty" not-null="true" default-value="false">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="last_upd_usr" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="last_upd_ts" not-null="true" default-value="now()">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<constraint name="visit_pk" type="pk-constr" table="public.visit">
+		<columns names="visit_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="sync_op_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<function name="trig_b_del"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="100"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Delete action will cause dirty set to false]]></comment>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="trigger" length="1"/>
+	</return-type>
+	<definition><![CDATA[
+DECLARE
+tbl  		text = TG_ARGV[0];  	--TABLE NAME
+pk   		text = TG_ARGV[1];  	--PRIMARY KEY
+is_del_img	boolean;	 	--= TG_ARGV[2]; Delete image bool
+img_p		text = '';		--image path
+day_diff 	integer;		--the difference between now and last update time
+BEGIN
+	IF (TG_OP = 'DELETE') THEN
+		IF (TG_ARGV[2] IS NOT NULL) THEN
+			is_del_img = TG_ARGV[2];
+		END IF;
+		
+		day_diff = date_part('year',age(OLD.last_upd_ts))*365 +
+				date_part('month',age(OLD.last_upd_ts))*30 +
+				date_part('day',age(OLD.last_upd_ts));
+				
+		IF (OLD.dirty = false) THEN
+			execute format('update %s set dirty = true, last_upd_ts = NOW(), 
+			last_upd_usr = $1.last_upd_usr WHERE %s=$1.%s',tbl,pk,pk) using OLD;   
+			RETURN NULL;
+	   	ELSIF day_diff >= keep_period() THEN
+			IF (is_del_img) THEN
+				EXECUTE 'SELECT img_path()' INTO img_p;
+				PERFORM drop_file(img_p || old.img_path);
+			END IF;
+			RETURN OLD;
+		ELSE
+			RETURN NULL;
+		END IF;
+	ELSE
+		RAISE EXCEPTION 'This trigger function is only used with Delete action.';
+	END IF;	
+END;
+]]></definition>
+</function>
+
+<function name="trig_encode_img"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="100"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Encode binary data to base64 string to store in text column]]></comment>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="trigger" length="1"/>
+	</return-type>
+	<definition><![CDATA[
+Begin
+    NEW.thumbnail = encode(NEW.thumbnail, 'base64');
+    RETURN NEW;
+end;
+]]></definition>
+</function>
+
+<function name="trig_b_upd_sys"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="1"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Increase Ts by 1 whenever update; and last update times]]></comment>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="trigger" length="1"/>
+	</return-type>
+	<definition><![CDATA[declare
+ts_exists	boolean = false;
+begin
+	IF (TG_OP = 'UPDATE') THEN
+		EXECUTE format('SELECT TRUE FROM pg_attribute ' ||
+		'WHERE  attrelid = ''%s''::regclass ' ||  -- cast to a registered class (table)
+		'AND attname = ''%s'' AND NOT attisdropped', TG_TABLE_NAME, 'ts') into ts_exists;
+		IF ts_exists THEN
+			new.ts = new.ts + 1;
+		END IF;
+	END IF;
+	new.last_upd_ts = now();
+	return new;
+end;
+]]></definition>
+</function>
+
+<function name="keep_period"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="1"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Return the days of deleted record will be kept]]></comment>
+	<language name="sql" sql-disabled="true"/>
+	<return-type>
+	<type name="smallint" length="1"/>
+	</return-type>
+	<definition><![CDATA[
+select 60::smallint
+]]></definition>
+</function>
+
+<function name="test"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="100"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="doctor"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="void" length="1"/>
+	</return-type>
+	<definition><![CDATA[begin
+perform drop_file('');
+end;]]></definition>
+</function>
+
+<language name="plpythonu" trusted="false">
+	<role name="postgres"/>
+</language>
+
+<function name="drop_file"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="100"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpythonu"/>
+	<return-type>
+	<type name="boolean" length="1"/>
+	</return-type>
+	<parameter name="path">
+		<type name="text" length="0"/>
+	</parameter>
+	<definition><![CDATA[import os
+
+try:
+    os.remove(path)
+    return True
+except IOError:
+    plpy.notice("IO error")
+    return False
+else:
+    plpy.notice("Unknown error")
+    return False
+  ]]></definition>
+</function>
+
+<trigger name="on_upsert" firing-type="BEFORE" per-line="true" constraint="false"
+	 ins-event="true" del-event="false" upd-event="true" trunc-event="false"
+	 table="public.visit">
+		<function signature="public.trig_b_upd_sys()"/>
+</trigger>
+
+<trigger name="on_del" firing-type="BEFORE" per-line="true" constraint="false"
+	 ins-event="false" del-event="true" upd-event="false" trunc-event="false" arguments="visit,visit_id"
+	 table="public.visit">
+		<function signature="public.trig_b_del()"/>
+</trigger>
+
+<trigger name="on_del" firing-type="BEFORE" per-line="true" constraint="false"
+	 ins-event="false" del-event="true" upd-event="false" trunc-event="false" arguments="patient_img,img_id,true"
+	 table="public.patient_img">
+		<function signature="public.trig_b_del()"/>
+</trigger>
+
+<table name="case">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="500" y="360"/>
+	<column name="case_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="created_by" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="created_ts" not-null="true">
+		<type name="timestamptz" length="0"/>
+	</column>
+	<constraint name="case_pk" type="pk-constr" table="public.&quot;case&quot;">
+		<columns names="case_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="patient">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="500" y="440"/>
+	<column name="patient_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="birthday">
+		<type name="date" length="0"/>
+	</column>
+	<column name="gender" not-null="true">
+		<type name="char" length="1"/>
+	</column>
+	<column name="phone">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="patient_pk" type="pk-constr" table="public.patient">
+		<columns names="patient_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="role">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="420" y="80"/>
+	<column name="role_id" not-null="true">
+		<type name="smallserial" length="0"/>
+	</column>
+	<column name="description" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="role_pk" type="pk-constr" table="public.role">
+		<columns names="role_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="clinic">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="640" y="60"/>
+	<column name="clinic_id" not-null="true">
+		<type name="smallserial" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="phone">
+		<type name="text" length="0"/>
+	</column>
+	<column name="address">
+		<type name="jsonb" length="0"/>
+	</column>
+	<constraint name="clinic_pk" type="pk-constr" table="public.clinic">
+		<columns names="clinic_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<view name="patient_visit" materialized="true">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="500" y="640"/>
+	<reference>
+		<expression><![CDATA[select a.*, b.doctor_id , b.clinic_id
+from patient a
+left join visit b
+on a.patient_id = b.patient_id; ]]></expression>
+	</reference>
+</view>
+
+<table name="work">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="560" y="260"/>
+	<column name="doctor_id" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="clinic_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="work_pk" type="pk-constr" table="public.work">
+		<columns names="doctor_id,clinic_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="membership">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="560" y="180"/>
+	<column name="mem_id" not-null="true">
+		<type name="smallserial" length="0"/>
+	</column>
+	<column name="description">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="mem_pk" type="pk-constr" table="public.membership">
+		<columns names="mem_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<constraint name="user_role_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="RESTRICT" ref-table="public.role" table="public.app_user">
+	<columns names="role" ref-type="src-columns"/>
+	<columns names="role_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="user_mem_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.membership" table="public.app_user">
+	<columns names="membership" ref-type="src-columns"/>
+	<columns names="mem_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="patientimg_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.visit" table="public.patient_img">
+	<columns names="visit_id" ref-type="src-columns"/>
+	<columns names="visit_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="visit_doctor_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="RESTRICT" ref-table="public.app_user" table="public.visit">
+	<columns names="doctor_id" ref-type="src-columns"/>
+	<columns names="user_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="visit_case_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="RESTRICT" ref-table="public.&quot;case&quot;" table="public.visit">
+	<columns names="case_id" ref-type="src-columns"/>
+	<columns names="case_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="visit_patient_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="RESTRICT" ref-table="public.patient" table="public.visit">
+	<columns names="patient_id" ref-type="src-columns"/>
+	<columns names="patient_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="visit_clinic_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="RESTRICT" ref-table="public.clinic" table="public.visit">
+	<columns names="clinic_id" ref-type="src-columns"/>
+	<columns names="clinic_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="work_doctor_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.app_user" table="public.work">
+	<columns names="doctor_id" ref-type="src-columns"/>
+	<columns names="user_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="work_clinic_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="SET NULL" ref-table="public.clinic" table="public.work">
+	<columns names="clinic_id" ref-type="src-columns"/>
+	<columns names="clinic_id" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_patient_img_visit" type="relfk"
+	 custom-color="#83af1f"
+	 src-table="public.patient_img"
+	 dst-table="public.visit"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_visit_app_user" type="relfk"
+	 custom-color="#5aa578"
+	 src-table="public.visit"
+	 dst-table="public.app_user"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_visit_case" type="relfk"
+	 src-table="public.visit"
+	 dst-table="public.&quot;case&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_visit_patient" type="relfk"
+	 src-table="public.visit"
+	 dst-table="public.patient"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_app_user_role" type="relfk"
+	 src-table="public.app_user"
+	 dst-table="public.role"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_visit_clinic" type="relfk"
+	 src-table="public.visit"
+	 dst-table="public.clinic"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_work_app_user" type="relfk"
+	 src-table="public.work"
+	 dst-table="public.app_user"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_work_clinic" type="relfk"
+	 src-table="public.work"
+	 dst-table="public.clinic"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_app_user_membership" type="relfk"
+	 src-table="public.app_user"
+	 dst-table="public.membership"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>

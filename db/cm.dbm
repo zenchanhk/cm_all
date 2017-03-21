@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.8.2" last-position="0,0" last-zoom="1"
+	 default-schema="public" default-owner="postgres">
+<database name="cm_all">
+</database>
+
+<schema name="public" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="app_user">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="120" y="120"/>
+	<column name="user_id" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="details" not-null="true">
+		<type name="jsonb"/>
+	</column>
+	<column name="avatar">
+		<type name="bytea"/>
+	</column>
+	<constraint name="appuser_pk" type="pk-constr" table="public.app_user">
+		<columns names="user_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="patient_img">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="480" y="420"/>
+	<column name="img_id" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="thumbnail" not-null="true">
+		<type name="bytea"/>
+	</column>
+	<column name="image" not-null="true">
+		<type name="oid"/>
+	</column>
+	<column name="visit_id" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="dirty" not-null="true" default-value="false">
+		<type name="bool"/>
+	</column>
+	<column name="erase" not-null="true" default-value="false">
+		<type name="bool"/>
+	</column>
+	<constraint name="patientimg_pk" type="pk-constr" table="public.patient_img">
+		<columns names="img_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<function name="img_path"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="1"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="sql" sql-disabled="true"/>
+	<return-type>
+	<type name="text"/>
+	</return-type>
+	<definition><![CDATA[$$SELECT text 'XXX'$$ LANGUAGE sql IMMUTABLE;]]></definition>
+</function>
+
+<table name="visit">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="120" y="440"/>
+	<column name="visit_id" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="case_id" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="patient_id" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="doctor_id" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="symptoms">
+		<type name="text"/>
+	</column>
+	<column name="pulse" not-null="true">
+		<type name="jsonb"/>
+	</column>
+	<column name="diagnosis">
+		<type name="text"/>
+	</column>
+	<column name="prescription">
+		<type name="text"/>
+	</column>
+	<column name="acupuncture">
+		<type name="text"/>
+	</column>
+	<column name="visisbility" not-null="true" default-value="{0}">
+		<type name="smallint" dimension="1"/>
+	</column>
+	<column name="ts" not-null="true" default-value="0">
+		<type name="smallint"/>
+		<comment><![CDATA[increase when being updated]]></comment>
+	</column>
+	<column name="dirty" not-null="true" default-value="false">
+		<type name="bool"/>
+	</column>
+	<column name="erase" not-null="true" default-value="false">
+		<type name="bool"/>
+	</column>
+	<constraint name="visit_pk" type="pk-constr" table="public.visit">
+		<columns names="visit_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="sync_op">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<comment><![CDATA[SQL statements for sync]]></comment>
+	<position x="360" y="120"/>
+	<column name="sync_type" not-null="true">
+		<type name="text"/>
+	</column>
+	<column name="sql" not-null="true">
+		<type name="text"/>
+	</column>
+	<constraint name="syncop_pk" type="pk-constr" table="public.sync_op">
+		<columns names="sync_type" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<function name="incr_ts"
+		window-func="false"
+		returns-setof="false"
+		behavior-type="CALLED ON NULL INPUT"
+		function-type="VOLATILE"
+		security-type="SECURITY INVOKER"
+		execution-cost="100"
+		row-amount="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<language name="plpgsql" sql-disabled="true"/>
+	<return-type>
+	<type name="trigger"/>
+	</return-type>
+	<definition><![CDATA[BEGIN
+    NEW.ts = NEW.ts + 1;
+    RETURN NEW;
+END ]]></definition>
+</function>
+
+<trigger name="visit_incr_ts" firing-type="AFTER" per-line="false" constraint="false"
+	 ins-event="false" del-event="false" upd-event="true" trunc-event="false"
+	 table="public.visit">
+		<function signature="public.incr_ts()"/>
+</trigger>
+
+<constraint name="patientimg_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.visit" table="public.patient_img">
+	<columns names="visit_id" ref-type="src-columns"/>
+	<columns names="visit_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="visit_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="NO ACTION" ref-table="public.app_user" table="public.visit">
+	<columns names="doctor_id" ref-type="src-columns"/>
+	<columns names="user_id" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_patient_img_visit" type="relfk"
+	 src-table="public.patient_img"
+	 dst-table="public.visit"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_visit_app_user" type="relfk"
+	 src-table="public.visit"
+	 dst-table="public.app_user"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>

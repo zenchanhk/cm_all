@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<architect-project version="1.0" appversion="1.0.8">
+ <project-name>cm</project-name>
+ <print-settings numCopies="1" zoom="1.0" pageNumbersPrinted="true" orientation="1" paperWidth="612.0" paperHeight="792.0" leftBorder="50.0" rightBorder="50.0" topBorder="50.0" bottomBorder="50.0" />
+ <project-data-sources>
+  <data-source id="DS0">
+   <property key="Logical" value="PlayPen Database" />
+  </data-source>
+  <data-source id="DS2">
+   <property key="Connection Type" value="PostgreSQL" />
+   <property key="Logical" value="doctor" />
+   <property key="JDBC URL" value="jdbc:postgresql://localhost:5432/postgres" />
+   <property key="UID" value="doctor" />
+   <property key="PWD" value="chen@1978" />
+   <property key="ca.sqlpower.architect.etl.kettle.database" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.port" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.hostname" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.login" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.password" value="" />
+  </data-source>
+  <data-source id="DS4">
+   <property key="Connection Type" value="PostgreSQL" />
+   <property key="Logical" value="PlayPen Database" />
+   <property key="JDBC URL" value="jdbc:postgresql://localhost:5432/cm_all" />
+   <property key="UID" value="doctor" />
+   <property key="PWD" value="chen@1978" />
+   <property key="ca.sqlpower.architect.etl.kettle.database" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.port" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.hostname" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.login" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.password" value="" />
+  </data-source>
+ </project-data-sources>
+ <source-databases>
+  <database id="DB0" populated="true" UUID="066fd979-8798-463f-a476-dbc79d013c95" dbcs-ref="DS2" name="doctor" physicalName="doctor" sql-exception="ca.sqlpower.sqlobject.SQLObjectException: Couldn&apos;t connect to database: 连接被拒绝，请确定主机名和端口是否正确，以及postmaster是否允许TCP/IP连接。" >
+   <catalog id="CAT1" populated="true" UUID="435f9b2e-e466-4de0-9827-55c0e44c152b" name="postgres" nativeTerm="database" physicalName="postgres" >
+    <schema id="SCH2" populated="true" UUID="2730ed0f-a1fe-4315-b099-c11b939abb0f" name="information_schema" nativeTerm="schema" physicalName="information_schema" >
+    </schema>
+    <schema id="SCH3" populated="true" UUID="d5ef98c4-924f-4361-bf34-65e914ac7d6d" name="pg_catalog" nativeTerm="schema" physicalName="pg_catalog" >
+    </schema>
+    <schema id="SCH4" populated="true" UUID="ce995722-ad74-417a-ac9c-ad8fa6d43fe2" name="pg_toast_temp_1" nativeTerm="schema" physicalName="pg_toast_temp_1" >
+    </schema>
+    <schema id="SCH5" populated="true" UUID="4dcb9f2d-f6de-4f47-b0fe-251b18b7c10c" name="public" nativeTerm="schema" physicalName="public" >
+    </schema>
+   </catalog>
+   <relationships>
+   </relationships>
+  </database>
+  <database id="DB6" populated="true" UUID="357925dc-49da-4d2c-9652-8bb00647add1" dbcs-ref="DS4" name="PlayPen Database" physicalName="cm" >
+   <catalog id="CAT7" populated="true" UUID="28e089a1-a2cb-4e6a-a059-f52f969f823c" name="cm_all" nativeTerm="database" physicalName="cm_all" >
+    <schema id="SCH8" populated="true" UUID="fb1b8b99-baed-4048-b936-ec108436f688" name="information_schema" nativeTerm="schema" physicalName="information_schema" >
+    </schema>
+    <schema id="SCH9" populated="true" UUID="e42c6bc4-7a27-4117-b7c9-f5045d11cd2a" name="pg_catalog" nativeTerm="schema" physicalName="pg_catalog" >
+    </schema>
+    <schema id="SCH10" populated="true" UUID="24223776-f227-4035-a268-4097a048961e" name="pg_toast_temp_1" nativeTerm="schema" physicalName="pg_toast_temp_1" >
+    </schema>
+    <schema id="SCH11" populated="true" UUID="7a367ca4-140f-4608-9eb2-2d7baee8b97e" name="public" nativeTerm="schema" physicalName="public" >
+     <table id="TAB12" populated="false" UUID="b52aa867-1dcf-486c-b189-ea1b2d5a7d05" name="app_user" objectType="TABLE" physicalName="app_user" >
+      <remarks></remarks>
+      <folder id="FOLTAB121" populated="true" name="Columns" physicalName="Columns" type="1">
+       <column id="COL13" populated="true" UUID="df769fd4-7bf9-48f5-ab5b-da9f657a9eab" autoIncrement="false" defaultValue="" name="user_id" nullable="0" physicalName="user_id" precision="2147483647" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       </folder>
+       <folder id="FOLTAB123" populated="false" name="Exported Keys" physicalName="Exported Keys" type="3">
+       </folder>
+       <folder id="FOLTAB122" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+       </folder>
+       <folder id="FOLTAB124" populated="true" name="Indices" physicalName="Indices" type="4">
+       <index id="IDX14" populated="true" UUID="8b7fa082-154e-4194-9162-b01bb2df5fb5" clustered="false" index-type="BTREE" name="user_id" physicalName="user_id" primaryKeyIndex="true" unique="true" >
+        <index-column id="IDC15" populated="true" UUID="7ced089e-138c-4ce0-aafc-2e51a35ce82b" ascendingOrDescending="UNSPECIFIED" column-ref="COL13" name="user_id" physicalName="user_id" />
+       </index>
+      </folder>
+     </table>
+    </schema>
+   </catalog>
+   <relationships>
+   </relationships>
+  </database>
+ </source-databases>
+ <target-database id="ppdb" dbcs-ref="DS0">
+  <table id="TAB17" populated="true" UUID="6b2e2abd-311d-4a90-9384-8ab16c9ddf40" name="app_user" objectType="TABLE" physicalName="app_user" >
+   <remarks></remarks>
+   <folder id="FOLTAB171" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL18" populated="true" UUID="45bb8d95-7945-45c7-956e-eddf1205fb1c" autoIncrement="false" autoIncrementSequenceName="app_user_user_id_seq" defaultValue="" name="User ID" nullable="0" physicalName="user_id" precision="20" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL19" populated="true" UUID="5f14e619-54d3-4db5-89ef-d24516046e70" autoIncrement="false" autoIncrementSequenceName="app_user_status_seq" defaultValue="" name="Status" nullable="0" physicalName="status" precision="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
+     <remarks>&quot;0&quot;:offline
+&quot;1&quot;:online</remarks>
+    </column>
+    <column id="COL20" populated="true" UUID="39a82404-4ac8-4f5b-8f7b-1ef0ca1bdee6" autoIncrement="false" autoIncrementSequenceName="app_user_phone_seq" defaultValue="" name="Phone" nullable="0" physicalName="phone" precision="13" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL21" populated="true" UUID="a8a696d6-4004-4a07-b7b3-ae66f8035713" autoIncrement="false" autoIncrementSequenceName="app_user_gender_seq" defaultValue="" name="Gender" nullable="0" physicalName="gender" precision="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
+     <remarks></remarks>
+    </column>
+    <column id="COL22" populated="true" UUID="2c5e57b8-e4ac-4563-9a1c-ed2e390f267f" autoIncrement="false" autoIncrementSequenceName="app_user_password_seq" defaultValue="" name="Password" nullable="0" physicalName="password" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL23" populated="true" UUID="49d4625b-bf99-4e96-9a6b-e0c85c7a3153" autoIncrement="false" autoIncrementSequenceName="app_user_display_name_seq" defaultValue="" name="Display Name" nullable="0" physicalName="display_name" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL24" populated="true" UUID="d72b60a0-f3a1-4728-b8da-b0d915d587d6" autoIncrement="false" autoIncrementSequenceName="app_user_email_seq" defaultValue="" name="Email" nullable="0" physicalName="email" precision="30" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL25" populated="true" UUID="b6b2ddec-3f30-4e05-a61a-a8e965be764c" autoIncrement="false" autoIncrementSequenceName="app_user_membership_seq" defaultValue="" name="Membership" nullable="0" physicalName="membership" precision="2" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
+     <remarks></remarks>
+    </column>
+    <column id="COL26" populated="true" UUID="c709bdf0-c087-437b-a325-b17f821762b8" autoIncrement="false" autoIncrementSequenceName="app_user_real_role_seq" defaultValue="" name="Role in real world" nullable="0" physicalName="real_role" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>doctor in clinic or
+doctor or
+learner</remarks>
+    </column>
+    <column id="COL27" populated="true" UUID="0a00cd70-2ec1-4d8a-8c69-56c4b511ea6b" autoIncrement="false" autoIncrementSequenceName="app_user_cnt_failed_login_seq" defaultValue="0" name="Count of failed login" nullable="0" physicalName="cnt_failed_login" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks></remarks>
+    </column>
+    <column id="COL28" populated="true" UUID="f76ee4c8-65b8-412e-8914-c7aaf07125be" autoIncrement="false" autoIncrementSequenceName="app_user_last_login_ts_seq" defaultValue="current_date" name="Last login time" nullable="0" physicalName="last_login_ts" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
+     <remarks></remarks>
+    </column>
+    <column id="COL29" populated="true" UUID="7fc2999c-92e6-400b-902b-d0d64e148372" autoIncrement="false" autoIncrementSequenceName="app_user_last_dev_id_seq" defaultValue="" name="Last used device id" nullable="0" physicalName="last_dev_id" precision="40" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB173" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB172" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB174" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX30" populated="true" UUID="57d9de27-743f-4e4e-8173-afe98b49460c" clustered="false" name="user_id" physicalName="user_id" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC31" populated="true" UUID="7704d818-b185-4d37-8dde-716a3b349e38" ascendingOrDescending="UNSPECIFIED" column-ref="COL18" name="User ID" physicalName="user_id" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB32" populated="true" UUID="487dcbe6-ceaa-4b37-979c-86587e66c4aa" name="Patient" objectType="TABLE" physicalName="patient" >
+   <remarks></remarks>
+   <folder id="FOLTAB321" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL33" populated="true" UUID="5578cf67-6d1f-41f4-bb3e-91f055b5d498" autoIncrement="false" autoIncrementSequenceName="patient_patient_id_seq" defaultValue="" name="patient_id" nullable="0" physicalName="patient_id" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL34" populated="true" UUID="c4a9ebaa-223e-452d-a1ec-ac768b0eba64" autoIncrement="false" autoIncrementSequenceName="patient_name_seq" defaultValue="" name="name" nullable="0" physicalName="name" precision="30" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL35" populated="true" UUID="38b52874-1ac3-4454-92cb-b072926d0eff" autoIncrement="false" autoIncrementSequenceName="patient_birthday_seq" defaultValue="" name="birthday" nullable="0" physicalName="birthday" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
+     <remarks></remarks>
+    </column>
+    <column id="COL36" populated="true" UUID="9a69794c-4d57-4f9c-ad3f-2b57f08f3f2a" autoIncrement="false" autoIncrementSequenceName="patient_phone_seq" defaultValue="" name="phone" nullable="1" physicalName="phone" precision="15" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL37" populated="true" UUID="0658bdb9-0add-4bff-b4ee-0ef03a2a2709" autoIncrement="false" autoIncrementSequenceName="patient_gender_seq" defaultValue="" name="gender" nullable="0" physicalName="gender" precision="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
+     <remarks></remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB323" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB322" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB324" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX38" populated="true" UUID="2d035cb6-9dac-446e-9583-1f188b4a6fd7" clustered="false" name="patient_id" physicalName="patient_id" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC39" populated="true" UUID="85d2b6fb-166e-414b-8a40-b77d27e31c9d" ascendingOrDescending="UNSPECIFIED" column-ref="COL33" name="patient_id" physicalName="patient_id" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB40" populated="true" UUID="49ded59b-e5cc-4e02-b196-19a7f858d647" name="Clinic" objectType="TABLE" physicalName="clinic" >
+   <remarks></remarks>
+   <folder id="FOLTAB401" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL41" populated="true" UUID="33704ca8-c3f4-41c6-960c-febec6765b43" autoIncrement="false" autoIncrementSequenceName="clinic_clinic_id_seq" defaultValue="" name="clinic_id" nullable="0" physicalName="clinic_id" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks></remarks>
+    </column>
+    <column id="COL42" populated="true" UUID="edccd4fd-dfac-474d-a805-8c176cb2c6d2" autoIncrement="false" autoIncrementSequenceName="clinic_name_seq" defaultValue="" name="name" nullable="0" physicalName="name" precision="30" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL43" populated="true" UUID="355a46ab-23af-4805-8aed-d4e9c8d363e5" autoIncrement="false" autoIncrementSequenceName="clinic_address_seq" defaultValue="" name="address" nullable="1" physicalName="address" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="2002" userDefinedTypeUUID="efddce6b-f53f-442d-8010-306bc3c6c755" >
+     <remarks>jsonb column</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB403" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB402" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB404" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX44" populated="true" UUID="363c4c07-40ff-433e-bc4a-1312cc47a29b" clustered="false" name="clinic_id" physicalName="clinic_id" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC45" populated="true" UUID="c1c61d25-a8de-4368-b95e-d21a5d14b122" ascendingOrDescending="UNSPECIFIED" column-ref="COL41" name="clinic_id" physicalName="clinic_id" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB46" populated="true" UUID="1e5c0623-7cac-414b-b8d6-ceb1cf6f37de" name="visit" objectType="TABLE" physicalName="visit" >
+   <remarks></remarks>
+   <folder id="FOLTAB461" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL47" populated="true" UUID="f1604b81-b48a-41c4-b172-d283f5cf92e1" autoIncrement="false" autoIncrementSequenceName="visit_visit_id_seq" defaultValue="" name="visit_id" nullable="0" physicalName="visit_id" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL48" populated="true" UUID="6889c6e5-87ff-4bb4-9ef9-49631a15e9f3" autoIncrement="false" autoIncrementSequenceName="visit_case_id_seq" defaultValue="" name="case_id" nullable="0" physicalName="case_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB463" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB462" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB464" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX49" populated="true" UUID="7f05c990-1d74-4e7a-ad25-c3bcba3dd5c6" clustered="false" name="visit_id" physicalName="visit_id" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC50" populated="true" UUID="7650787a-ef09-4855-9cfe-4d21dfe451dc" ascendingOrDescending="UNSPECIFIED" column-ref="COL47" name="visit_id" physicalName="visit_id" />
+    </index>
+   </folder>
+  </table>
+  <relationships>
+  </relationships>
+ </target-database>
+ <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="false" target-schema="public"> </ddl-generator>
+ <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
+ <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
+ <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
+  <table-pane table-ref="TAB17" x="94" y="57" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB32" x="105" y="310" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB40" x="104" y="434" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB46" x="387" y="335" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+ </play-pen>
+ <critic-manager>
+  <critic-grouping platformType="Generic" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.PrimaryKeyCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.RelationshipMappingTypeCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.EmptyRelationshipCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.AlphaNumericNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.AlphaNumericSequenceNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SetDefaultOnColumnWithNoDefaultCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SetNullOnNonNullableColumnCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.DuplicateNameCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="DB2" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.DB2UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="H2" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.H2UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="HSQLDB" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.HSQLDBUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="MySQL" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLCommentCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLReservedWordsCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="Oracle" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OraclePhysicalNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OracleReservedWordsCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OracleUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="PostgreSQL" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.PostgreSQLReservedWordsCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServerUnsupportedFeaturesCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServerReservedWordsCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server 2000" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServer2000UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server 2005" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServer2005UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+ </critic-manager>
+ <profiles topNCount="10">
+  <table-profile-result ref-id="TAB12" createStartTime="1485948722585" createEndTime="1485948723611" exception="false" rowCount="0" UUID="9f50fd8b-3573-4378-b943-b6bbcea42b57">
+   <column-profile-result ref-id="COL13" createStartTime="1485948722933" createEndTime="1485948723611" exception="false" avgLength="0.0" minLength="0" maxLength="0" nullCount="0" distinctValueCount="0" UUID="c69d8db8-37ee-4c3d-ac91-775baca5a21d">
+   </column-profile-result>
+  </table-profile-result>
+  </profiles>
+  <olap>
+   <olap-session id="0" db-ref="DB0">
+    <Schema id="1" name="New OLAP Schema"/>
+   </olap-session>
+  </olap>
+  <olap-gui>
+   <olap-edit-session osession-ref="0">
+    <play-pen zoom="1.0" viewportX="0" viewportY="0">
+    </play-pen>
+   </olap-edit-session>
+  </olap-gui>
+</architect-project>
