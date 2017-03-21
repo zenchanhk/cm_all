@@ -1,0 +1,8 @@
+<StackLayout #iconWithDigit class="common" horizontalAlignment="center" (touch)="onTouch($event)" [col]="gridCol">
+    <AbsoluteLayout width="46" left="1">        
+        <Label #lblIcon [text]="icon" class="icon-lbl" left="0" top="10"></Label>
+        <Label #lblDigit [text]="digit" class="digit-lbl" [visibility]="isDigitVisible ? 'visible' : 'collapse'"
+            [left]="digit==''?32:28" [top]="2"></Label>
+    </AbsoluteLayout>
+    <label [text]="text+' '" class="text-lbl"></label>
+</StackLayout>

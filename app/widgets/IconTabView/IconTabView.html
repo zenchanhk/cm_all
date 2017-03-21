@@ -1,0 +1,8 @@
+<GridLayout #gl rows="auto" [columns]="'100* '.repeat(tabEntries.length)" row="1" style.borderTopColor="gray"
+ style.borderTopWidth="0.4" [row]="gridRow" [col]="gridCol" [rowSpan]="gridRSpan" [colSpan]="gridCSpan">
+    <IconWithDigit *ngFor="let item of tabEntries; let i=index" [activeColor]="item.activeColor"
+    [activeBg]="item.activeBg" [normalColor]="item.normalColor" [normalBg]="item.normalBg"
+    [icon]="item.icon" [text]="item.text" [isActive]="i==index" [onIconTap]="onIconTap"
+    [indexId]="i" [digit]="item.digit" [gridCol]="i"></IconWithDigit>
+</GridLayout>
+    

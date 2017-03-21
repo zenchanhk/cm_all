@@ -1,0 +1,28 @@
+.common {
+  text-align: center;
+  vertical-align: middle;  
+}
+
+.icon-lbl {
+    font-family: FontAwesome;    
+    font-size: 32;
+    left: 5;
+    top: 5;    
+}
+
+.digit-lbl {
+    font-size: 12;   
+    font-weight: bold;
+    background-color: red;
+    color: white;    
+    vertical-align: center;
+}
+
+.text-lbl {
+    margin-left: 0;
+}
+
+AbsoluteLayout1 {
+    background-color: blue;
+    
+}
